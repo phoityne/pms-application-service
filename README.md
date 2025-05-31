@@ -1,6 +1,6 @@
 # pms-application-service
 
-`pty-mcp-server` is a multi-threaded application designed to handle multiple domain-specific tasks concurrently.  
+[`pty-mcp-server`](https://github.com/phoityne/pty-mcp-server) is a multi-threaded application designed to handle multiple domain-specific tasks concurrently.  
 `pms-application-service` is one of its internal packages, responsible for coordinating core application logic and managing concurrent execution across threads.
 
 This package interprets user-intent commands (parsed from JSON-RPC requests) and executes them within specific domain contexts.  
@@ -12,9 +12,11 @@ It provides the orchestration required to safely run multiple applications in pa
 ---
 
 ## Package Structure
-
+![Package Structure](./docs/31-1.png)
 ---
 
 ## Module Structure
+![Module Structure](./docs/31-2.png)
+
 
 ---
