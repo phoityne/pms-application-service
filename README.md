@@ -12,11 +12,11 @@ It provides the orchestration required to safely run multiple applications in pa
 ---
 
 ## Package Structure
-![Package Structure](./docs/31-1.png)
+![Package Structure](https://raw.githubusercontent.com/phoityne/pms-application-service/main/docs/31-1.png)
 ---
 
 ## Module Structure
-![Module Structure](./docs/31-2.png)
+![Module Structure](https://raw.githubusercontent.com/phoityne/pms-application-service/main/docs/31-2.png)
 
 
 ---

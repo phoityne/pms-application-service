@@ -61,8 +61,8 @@ tearDown _ = do
 --
 run :: SpecWith SpecContext
 run = do
-  describe "runApp" $ do
-    context "when AppData default" $ do
+  describe "run" $ do
+    context "when DomainContext" $ do
       it "should be run" $ \_ -> do 
         putStrLn "[INFO] EXECUTING THE FIRST TEST."
 
@@ -71,16 +71,18 @@ run = do
             
         SUT.run args apps
 
+-- |
+--
+sample1 :: DM.DomainContext ()
+sample1 _ = do
+  putStrLn $ "[INFO] sample1 called."
+  C.threadDelay (2 * 1000 * 1000) 
+  putStrLn $ "[INFO] sample1 called. end."
 
-  where 
-    sample1 :: DM.DomainContext ()
-    sample1 _ = do
-      putStrLn $ "[INFO] sample1 called."
-      C.threadDelay (2 * 1000 * 1000) 
-      putStrLn $ "[INFO] sample1 called. end."
-
-    sample2 :: DM.DomainContext ()
-    sample2 _ = do
-      putStrLn $ "[INFO]   sample2 called."
-      C.threadDelay (3 * 1000 * 1000) 
-      putStrLn $ "[INFO]   sample2 called. end."
+-- |
+--
+sample2 :: DM.DomainContext ()
+sample2 _ = do
+  putStrLn $ "[INFO]   sample2 called."
+  C.threadDelay (3 * 1000 * 1000) 
+  putStrLn $ "[INFO]   sample2 called. end."
