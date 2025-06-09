@@ -59,6 +59,7 @@ instance Default ConfigData where
       , _scriptsDirConfigData = "./scripts"
       , _promptsConfigData = [
           "ghci>"
+        , "]#"
         , "]$"
         , ")?"
         , "password:"
