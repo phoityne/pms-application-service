@@ -57,7 +57,7 @@ extra-doc-files:    README.md,
 
 library
     -- Import common warning flags.
-    ghc-options: -Wall -Wno-x-partial
+    ghc-options: -Wall -threaded -Wno-x-partial
 
     -- Modules exported by the library.
     exposed-modules:  PMS.Application.Service.DM.Type,
@@ -97,7 +97,7 @@ library
 
 test-suite pms-application-service-test
     -- Import common warning flags.
-    ghc-options: -Wall -Wno-x-partial
+    ghc-options: -Wall -threaded -Wno-x-partial
 
     -- Base language which the package is written in.
     default-language: GHC2021
