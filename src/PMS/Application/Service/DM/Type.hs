@@ -41,7 +41,7 @@ instance Default ArgData where
 data ConfigData = ConfigData {
     _logDirConfigData :: Maybe FilePath
   , _logLevelConfigData :: LogLevel
-  , _scriptsDirConfigData :: FilePath
+  , _toolsDirConfigData :: FilePath
   , _promptsConfigData :: [String]
   } deriving (Show, Read, Eq)
 
@@ -56,7 +56,7 @@ instance Default ConfigData where
   def = ConfigData {
         _logDirConfigData  = Nothing
       , _logLevelConfigData = LevelDebug
-      , _scriptsDirConfigData = "./scripts"
+      , _toolsDirConfigData = "./tools"
       , _promptsConfigData = [
           "ghci>"
         , "]#"

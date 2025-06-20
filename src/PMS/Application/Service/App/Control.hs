@@ -34,7 +34,7 @@ run args apps = do
   let domDat = defDom {
                DM._logDirDomainData   = conf^.logDirConfigData
              , DM._logLevelDomainData = conf^.logLevelConfigData
-             , DM._scriptsDirDomainData = conf^.scriptsDirConfigData
+             , DM._toolsDirDomainData = conf^.toolsDirConfigData
              , DM._promptsDomainData = conf^.promptsConfigData
              }
       appDat = def {
