@@ -1,5 +1,9 @@
 # Revision history for pms-application-service
 
+## 0.0.3.0 -- 2025-06-22
+
+* Changed scriptsDir to toolsDir.
+
 ## 0.0.2.0 -- 2025-06-15
 
 * Added expected prompt string for use with `expect`.
