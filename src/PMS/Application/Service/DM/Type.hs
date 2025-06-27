@@ -42,6 +42,8 @@ data ConfigData = ConfigData {
     _logDirConfigData :: Maybe FilePath
   , _logLevelConfigData :: LogLevel
   , _toolsDirConfigData :: FilePath
+  , _promptsDirConfigData :: FilePath
+  , _resourcesDirConfigData :: FilePath
   , _promptsConfigData :: [String]
   } deriving (Show, Read, Eq)
 
@@ -57,8 +59,10 @@ instance Default ConfigData where
         _logDirConfigData  = Nothing
       , _logLevelConfigData = LevelDebug
       , _toolsDirConfigData = "./tools"
+      , _promptsDirConfigData = "./prompts"
+      , _resourcesDirConfigData = "./resources"
       , _promptsConfigData = [
-          "ghci>"
+          "> "
         , "]#"
         , "]$"
         , ")?"

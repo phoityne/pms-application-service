@@ -32,10 +32,12 @@ run args apps = do
   hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run conf." ++ show conf
 
   let domDat = defDom {
-               DM._logDirDomainData   = conf^.logDirConfigData
-             , DM._logLevelDomainData = conf^.logLevelConfigData
-             , DM._toolsDirDomainData = conf^.toolsDirConfigData
-             , DM._promptsDomainData = conf^.promptsConfigData
+               DM._logDirDomainData       = conf^.logDirConfigData
+             , DM._logLevelDomainData     = conf^.logLevelConfigData
+             , DM._toolsDirDomainData     = conf^.toolsDirConfigData
+             , DM._promptsDirDomainData   = conf^.promptsDirConfigData
+             , DM._resourcesDirDomainData = conf^.resourcesDirConfigData
+             , DM._promptsDomainData      = conf^.promptsConfigData
              }
       appDat = def {
                _appsAppData = apps
