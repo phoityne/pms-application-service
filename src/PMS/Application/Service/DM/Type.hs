@@ -44,6 +44,7 @@ data ConfigData = ConfigData {
   , _toolsDirConfigData :: FilePath
   , _promptsDirConfigData :: FilePath
   , _resourcesDirConfigData :: FilePath
+  , _workDirConfigData :: Maybe FilePath
   , _promptsConfigData :: [String]
   } deriving (Show, Read, Eq)
 
@@ -56,17 +57,17 @@ $(deriveJSON
 
 instance Default ConfigData where
   def = ConfigData {
-        _logDirConfigData  = Nothing
+        _logDirConfigData  = def
       , _logLevelConfigData = LevelDebug
       , _toolsDirConfigData = "./tools"
       , _promptsDirConfigData = "./prompts"
       , _resourcesDirConfigData = "./resources"
+      , _workDirConfigData = def
       , _promptsConfigData = [
-          "> "
-        , "]#"
-        , "]$"
-        , ")?"
-        , "password:"
+          ">>>"
+        , "# "
+        , "$ "
+        , "ghci>"
         ]
       }
 

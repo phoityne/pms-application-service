@@ -86,6 +86,8 @@ library
                       mtl,
                       async,
                       async-pool,
+                      filepath,
+                      directory,
                       pms-domain-model
 
     -- Directories containing source files.

@@ -4,10 +4,14 @@ module PMS.Application.Service.App.Control where
 
 import qualified Control.Exception.Safe as E
 import Data.Default
+-- import Data.Yaml.Config
 import Data.Yaml
 import Control.Lens
 import System.Log.FastLogger
 import System.IO
+-- import System.Environment
+import System.Directory
+import System.FilePath
 
 import qualified PMS.Domain.Model.DM.Type as DM
 import qualified PMS.Domain.Model.DS.Utility as DM
@@ -26,17 +30,32 @@ run :: ArgData
 run args apps = do
   hPutStrLn stderr "[INFO] PMS.Application.Service.App.Control.run called."
 
-  conf <- maybe (pure def) decodeFileThrow (args^.yamlArgData)
+  conf <- loadConf args
+
+  changeCWD args conf
+
+  logDir <- case conf^.logDirConfigData of
+    Nothing -> return Nothing
+    Just p  -> Just <$> makeAbsolute p
+  toolsDir <- makeAbsolute $ conf^.toolsDirConfigData
+  promptsDir <- makeAbsolute $ conf^.promptsDirConfigData
+  resourcesDir <- makeAbsolute $ conf^.resourcesDirConfigData
+
   defDom <- DM.defaultDomainData
 
-  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run conf." ++ show conf
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run args: " ++ show args
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run conf: " ++ show conf
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run logDir: " ++ show logDir
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run toolsDir: " ++ toolsDir
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run promptsDir: " ++ promptsDir
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run resourcesDir: " ++ resourcesDir
 
   let domDat = defDom {
-               DM._logDirDomainData       = conf^.logDirConfigData
+               DM._logDirDomainData       = logDir
              , DM._logLevelDomainData     = conf^.logLevelConfigData
-             , DM._toolsDirDomainData     = conf^.toolsDirConfigData
-             , DM._promptsDirDomainData   = conf^.promptsDirConfigData
-             , DM._resourcesDirDomainData = conf^.resourcesDirConfigData
+             , DM._toolsDirDomainData     = toolsDir
+             , DM._promptsDirDomainData   = promptsDir
+             , DM._resourcesDirDomainData = resourcesDir
              , DM._promptsDomainData      = conf^.promptsConfigData
              }
       appDat = def {
@@ -75,3 +94,35 @@ runWithLogger domDat appDat (logger, finalizeLogger) =
       hPutStrLn stderr "[ERROR] PMS.Application.Service.App.Control.run end with error."
       hPutStrLn stderr $ show e
       hPutStrLn stderr "-----------------------------------------------------------------------------"
+
+-- |
+--
+loadConf :: ArgData -> IO ConfigData
+loadConf args = maybe (pure def) decodeFileThrow (args^.yamlArgData)
+{-
+loadConf args = case args ^. yamlArgData of
+  Nothing -> pure def
+  Just relPath -> do
+    absPath <- makeAbsolute relPath
+    let yamlDir = takeDirectory absPath
+    setEnv "PMS_YAML_DIR" yamlDir
+
+    loadYamlSettings [absPath] [] useEnv
+-}
+
+-- |
+--
+changeCWD :: ArgData -> ConfigData -> IO ()
+changeCWD args conf = case conf^.workDirConfigData of
+  Just dir -> do
+    setCurrentDirectory dir
+    hPutStrLn stderr $ "[INFO] CWD(config): " ++ dir
+
+  Nothing -> case args^.yamlArgData of
+    Just relPath -> do
+      absPath <- takeDirectory <$> makeAbsolute relPath
+      setCurrentDirectory absPath
+      hPutStrLn stderr $ "[INFO] CWD(yaml path): " ++ absPath
+
+    Nothing -> return ()
+
