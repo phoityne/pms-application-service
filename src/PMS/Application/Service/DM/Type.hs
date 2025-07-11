@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
-
+{-# LANGUAGE DeriveDataTypeable #-}
 
 module PMS.Application.Service.DM.Type where
 
