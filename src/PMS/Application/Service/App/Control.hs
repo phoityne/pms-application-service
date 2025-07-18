@@ -32,6 +32,9 @@ run args apps = do
 
   conf <- loadConf args
 
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run args: " ++ show args
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run conf: " ++ show conf
+
   changeCWD args conf
 
   logDir <- case conf^.logDirConfigData of
