@@ -11,6 +11,7 @@ import Control.Lens
 import Control.Exception
 import System.IO
 import Control.Monad.Except
+import Control.Concurrent.Async
 
 import qualified PMS.Domain.Model.DM.Type as DM
 import qualified PMS.Domain.Model.DM.Constant as DM
@@ -18,7 +19,6 @@ import qualified PMS.Domain.Model.DM.Constant as DM
 import PMS.Application.Service.DM.Type
 import PMS.Application.Service.DS.Utility
 
-import Control.Concurrent.Async
 
 -- |
 --

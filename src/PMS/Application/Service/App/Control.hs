@@ -4,12 +4,10 @@ module PMS.Application.Service.App.Control where
 
 import qualified Control.Exception.Safe as E
 import Data.Default
--- import Data.Yaml.Config
 import Data.Yaml
 import Control.Lens
 import System.Log.FastLogger
 import System.IO
--- import System.Environment
 import System.Directory
 import System.FilePath
 
@@ -102,16 +100,7 @@ runWithLogger domDat appDat (logger, finalizeLogger) =
 --
 loadConf :: ArgData -> IO ConfigData
 loadConf args = maybe (pure def) decodeFileThrow (args^.yamlArgData)
-{-
-loadConf args = case args ^. yamlArgData of
-  Nothing -> pure def
-  Just relPath -> do
-    absPath <- makeAbsolute relPath
-    let yamlDir = takeDirectory absPath
-    setEnv "PMS_YAML_DIR" yamlDir
 
-    loadYamlSettings [absPath] [] useEnv
--}
 
 -- |
 --

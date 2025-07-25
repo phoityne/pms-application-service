@@ -59,14 +59,17 @@ instance Default ConfigData where
   def = ConfigData {
         _logDirConfigData  = def
       , _logLevelConfigData = LevelDebug
-      , _toolsDirConfigData = "./tools"
-      , _promptsDirConfigData = "./prompts"
-      , _resourcesDirConfigData = "./resources"
+      , _toolsDirConfigData = "pty-mcp-server/tools"
+      , _promptsDirConfigData = "pty-mcp-server/prompts"
+      , _resourcesDirConfigData = "pty-mcp-server/resources"
       , _workDirConfigData = def
       , _promptsConfigData = [
           ">>>"
-        , "# "
-        , "$ "
+        , "]#"
+        , "]$"
+        , ")?"
+        , "Password:"
+        , "password:"
         , "ghci>"
         ]
       }
