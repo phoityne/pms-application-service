@@ -1,5 +1,9 @@
 # Revision history for pms-application-service
 
+## 0.0.8.0 -- 2025-09-07
+
+* Support invalidChars configs.
+
 ## 0.0.7.0 -- 2025-07-27
 
 * Fixed resources templates.

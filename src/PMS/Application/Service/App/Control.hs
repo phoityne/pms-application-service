@@ -58,6 +58,8 @@ run args apps = do
              , DM._promptsDirDomainData   = promptsDir
              , DM._resourcesDirDomainData = resourcesDir
              , DM._promptsDomainData      = conf^.promptsConfigData
+             , DM._invalidCharsDomainData = conf^.invalidCharsConfigData
+             , DM._invalidCmdsDomainData  = conf^.invalidCmdsConfigData
              }
       appDat = def {
                _appsAppData = apps

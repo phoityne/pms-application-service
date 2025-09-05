@@ -46,6 +46,8 @@ data ConfigData = ConfigData {
   , _resourcesDirConfigData :: FilePath
   , _workDirConfigData :: Maybe FilePath
   , _promptsConfigData :: [String]
+  , _invalidCharsConfigData :: [String]
+  , _invalidCmdsConfigData :: [String]
   } deriving (Show, Read, Eq)
 
 makeLenses ''ConfigData
@@ -71,6 +73,22 @@ instance Default ConfigData where
         , "Password:"
         , "password:"
         , "ghci>"
+        ]
+      , _invalidCharsConfigData = [
+          "&&"
+        , "||"
+        , "|"
+        , ".."
+        , "reboot"
+        , "shutdown"
+        , "restart"
+        , "kill"
+        ]
+      , _invalidCmdsConfigData = [
+          "del", "erase", "rd", "rmdir", "format"
+        , "shutdown", "restart", "taskkill"
+        , "rm", "mv", "dd", "chmod", "chown"
+        , "reboot", "kill", "nc", "sudo", "su"
         ]
       }
 
