@@ -41,6 +41,9 @@ run args apps = do
   toolsDir <- makeAbsolute $ conf^.toolsDirConfigData
   promptsDir <- makeAbsolute $ conf^.promptsDirConfigData
   resourcesDir <- makeAbsolute $ conf^.resourcesDirConfigData
+  writableDir <- case conf^.writableDirConfigData of
+    Nothing -> return Nothing
+    Just p  -> Just <$> makeAbsolute p
 
   defDom <- DM.defaultDomainData
 
@@ -50,6 +53,7 @@ run args apps = do
   hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run toolsDir: " ++ toolsDir
   hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run promptsDir: " ++ promptsDir
   hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run resourcesDir: " ++ resourcesDir
+  hPutStrLn stderr $ "[INFO] PMS.Application.Service.App.Control.run writabelDir: " ++ show writableDir
 
   let domDat = defDom {
                DM._logDirDomainData       = logDir
@@ -57,6 +61,7 @@ run args apps = do
              , DM._toolsDirDomainData     = toolsDir
              , DM._promptsDirDomainData   = promptsDir
              , DM._resourcesDirDomainData = resourcesDir
+             , DM._writableDirDomainData  = writableDir
              , DM._promptsDomainData      = conf^.promptsConfigData
              , DM._invalidCharsDomainData = conf^.invalidCharsConfigData
              , DM._invalidCmdsDomainData  = conf^.invalidCmdsConfigData
