@@ -45,7 +45,7 @@ data ConfigData = ConfigData {
   , _promptsDirConfigData :: FilePath
   , _resourcesDirConfigData :: FilePath
   , _workDirConfigData :: Maybe FilePath
-  , _writableDirConfigData :: Maybe FilePath
+  , _sandboxDirConfigData :: Maybe FilePath
   , _promptsConfigData :: [String]
   , _invalidCharsConfigData :: [String]
   , _invalidCmdsConfigData :: [String]
@@ -66,7 +66,7 @@ instance Default ConfigData where
       , _promptsDirConfigData = "pty-mcp-server/prompts"
       , _resourcesDirConfigData = "pty-mcp-server/resources"
       , _workDirConfigData = def
-      , _writableDirConfigData = def
+      , _sandboxDirConfigData = def
       , _promptsConfigData = [
           ">>>"
         , "]#"
