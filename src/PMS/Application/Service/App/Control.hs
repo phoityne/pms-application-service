@@ -63,9 +63,11 @@ run args apps = do
              , DM._resourcesDirDomainData = resourcesDir
              , DM._sandboxDirDomainData  = sandboxDir
              , DM._promptsDomainData      = conf^.promptsConfigData
-             , DM._invalidCharsDomainData = conf^.invalidCharsConfigData
-             , DM._invalidCmdsDomainData  = conf^.invalidCmdsConfigData
-             }
+              , DM._invalidCharsDomainData = conf^.invalidCharsConfigData
+              , DM._invalidCmdsDomainData  = conf^.invalidCmdsConfigData
+              , DM._timeoutMicrosecDomainData = conf^.timeoutMicrosecConfigData
+              }
+
       appDat = def {
                _appsAppData = apps
              }

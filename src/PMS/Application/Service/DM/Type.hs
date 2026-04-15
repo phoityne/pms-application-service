@@ -49,6 +49,7 @@ data ConfigData = ConfigData {
   , _promptsConfigData :: [String]
   , _invalidCharsConfigData :: [String]
   , _invalidCmdsConfigData :: [String]
+  , _timeoutMicrosecConfigData :: Int
   } deriving (Show, Read, Eq)
 
 makeLenses ''ConfigData
@@ -92,6 +93,7 @@ instance Default ConfigData where
         , "rm", "mv", "dd", "chmod", "chown"
         , "reboot", "kill", "nc", "sudo", "su"
         ]
+      , _timeoutMicrosecConfigData = 30 * 1000 * 1000
       }
 
 

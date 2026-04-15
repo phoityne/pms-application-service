@@ -1,5 +1,9 @@
 # Revision history for pms-application-service
 
+## 0.1.0.0 -- 2026-04-30
+
+* Support timeout configuration.
+
 ## 0.0.9.0 -- 2025-12-31
 
 * Add file system tools.
