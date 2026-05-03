@@ -1,5 +1,9 @@
 # Revision history for pms-application-service
 
+## 0.1.1.0 -- 2026-05-02
+
+* Add agentAllowedCmds config to restrict agent-proc-run commands.
+
 ## 0.1.0.0 -- 2026-04-30
 
 * Support timeout configuration.

@@ -49,6 +49,7 @@ data ConfigData = ConfigData {
   , _promptsConfigData :: [String]
   , _invalidCharsConfigData :: [String]
   , _invalidCmdsConfigData :: [String]
+  , _agentAllowedCmdsConfigData :: [String]
   , _timeoutMicrosecConfigData :: Int
   } deriving (Show, Read, Eq)
 
@@ -93,6 +94,7 @@ instance Default ConfigData where
         , "rm", "mv", "dd", "chmod", "chown"
         , "reboot", "kill", "nc", "sudo", "su"
         ]
+      , _agentAllowedCmdsConfigData = def   -- deny all by default
       , _timeoutMicrosecConfigData = 30 * 1000 * 1000
       }
 
