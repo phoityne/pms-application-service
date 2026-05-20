@@ -50,6 +50,8 @@ data ConfigData = ConfigData {
   , _invalidCharsConfigData :: [String]
   , _invalidCmdsConfigData :: [String]
   , _agentAllowedCmdsConfigData :: [String]
+  , _sandboxNetworksConfigData  :: [String]   -- ^ CIDR list for agent-socket-open
+  , _invalidPatternsConfigData  :: [String]   -- ^ regex blacklist for write commands
   , _timeoutMicrosecConfigData :: Int
   } deriving (Show, Read, Eq)
 
@@ -95,6 +97,8 @@ instance Default ConfigData where
         , "reboot", "kill", "nc", "sudo", "su"
         ]
       , _agentAllowedCmdsConfigData = def   -- deny all by default
+      , _sandboxNetworksConfigData  = def   -- deny all by default
+      , _invalidPatternsConfigData  = def   -- allow all by default
       , _timeoutMicrosecConfigData = 30 * 1000 * 1000
       }
 

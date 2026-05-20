@@ -66,6 +66,8 @@ run args apps = do
               , DM._invalidCharsDomainData = conf^.invalidCharsConfigData
               , DM._invalidCmdsDomainData  = conf^.invalidCmdsConfigData
               , DM._allowedAgentCmdsDomainData = conf^.agentAllowedCmdsConfigData
+              , DM._sandboxNetworksDomainData  = conf^.sandboxNetworksConfigData
+              , DM._invalidPatternsDomainData  = conf^.invalidPatternsConfigData
               , DM._timeoutMicrosecDomainData = conf^.timeoutMicrosecConfigData
               }
 

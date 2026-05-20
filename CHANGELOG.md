@@ -1,5 +1,9 @@
 # Revision history for pms-application-service
 
+## 0.1.2.0 -- 2026-05-31
+
+* Added pms-infra-agent-socket, pms-infra-agent-serial.
+
 ## 0.1.1.0 -- 2026-05-02
 
 * Add agentAllowedCmds config to restrict agent-proc-run commands.
@@ -19,7 +23,6 @@
 ## 0.0.7.0 -- 2025-07-27
 
 * Fixed resources templates.
-
 
 ## 0.0.6.0 -- 2025-07-20
 
