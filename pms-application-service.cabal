@@ -89,8 +89,7 @@ library
                       async-pool,
                       filepath,
                       directory,
-                      pms-domain-model,
-                      pms-infra-agent-serial
+                      pms-domain-model
 
     -- Directories containing source files.
     hs-source-dirs:   src
