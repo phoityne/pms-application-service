@@ -52,7 +52,7 @@ data ConfigData = ConfigData {
   , _agentAllowedCmdsConfigData :: [String]
   , _sandboxNetworksConfigData  :: [String]   -- ^ CIDR list for agent-socket-open
   , _invalidPatternsConfigData  :: [String]   -- ^ regex blacklist for write commands
-  , _timeoutMicrosecConfigData :: Int
+  , _timeoutMicrosecConfigData :: Maybe Int  -- ^ If absent in YAML, falls back to the default in DomainData.defaultDomainData (30 seconds).
   } deriving (Show, Read, Eq)
 
 makeLenses ''ConfigData
@@ -99,7 +99,8 @@ instance Default ConfigData where
       , _agentAllowedCmdsConfigData = def   -- deny all by default
       , _sandboxNetworksConfigData  = def   -- deny all by default
       , _invalidPatternsConfigData  = def   -- allow all by default
-      , _timeoutMicrosecConfigData = 30 * 1000 * 1000
+      , _timeoutMicrosecConfigData = Nothing
+      -- Default value (30 seconds) is owned by DomainData.defaultDomainData.
       }
 
 

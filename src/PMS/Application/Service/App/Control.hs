@@ -68,7 +68,12 @@ run args apps = do
               , DM._allowedAgentCmdsDomainData = conf^.agentAllowedCmdsConfigData
               , DM._sandboxNetworksDomainData  = conf^.sandboxNetworksConfigData
               , DM._invalidPatternsDomainData  = conf^.invalidPatternsConfigData
-              , DM._timeoutMicrosecDomainData = conf^.timeoutMicrosecConfigData
+              , DM._timeoutMicrosecDomainData =
+                  -- Use the value from YAML if present; otherwise fall back to the
+                  -- default (30 seconds) defined in DomainData.defaultDomainData.
+                  maybe (defDom ^. DM.timeoutMicrosecDomainData)
+                        id
+                        (conf ^. timeoutMicrosecConfigData)
               }
 
       appDat = def {

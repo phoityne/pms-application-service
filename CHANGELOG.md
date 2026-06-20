@@ -1,5 +1,9 @@
 # Revision history for pms-application-service
 
+## 0.1.3.0 -- 2026-07-05
+
+* Fixed the configuration setting loading process.
+
 ## 0.1.2.0 -- 2026-05-31
 
 * Added pms-infra-agent-socket, pms-infra-agent-serial.
